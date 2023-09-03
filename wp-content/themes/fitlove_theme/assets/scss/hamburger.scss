@@ -1,0 +1,73 @@
+// Burger Layout Vars
+$line-color:      white;
+$line-width:      27px;
+$line-spacing:    22px;
+$line-thickness:  2px;
+// Burger Animation Vars
+$transition:     .2s ease-in-out;
+$transitionSlow: .6s ease-in-out;
+$transition-time: 0.4s;
+$rotation:        45deg;
+$translateY:      ($line-spacing / 2);
+$translateX:      0;
+
+#hamburger-icon {
+	width:          $line-width;
+	height:         $line-spacing;
+	display:        flex;
+	flex-direction: column;
+	gap:            8px;
+	text-align:     right;
+	z-index:        6;
+	right:          15px;
+	top:            30px;
+	transition:     top $transition;
+
+	&.active .line {
+		background: black;
+	}
+
+	.line {
+		display:       block;
+		background:    $line-color;
+		width:         $line-width;
+		height:        $line-thickness;
+		right:         0;
+		border-radius: ($line-thickness / 2);
+		transition:    all $transition-time;
+
+		&.line-1 {
+			top: 0;
+		}
+
+		&.line-2 {
+			top: 50%;
+		}
+
+		&.line-3 {
+			top: 100%;
+		}
+	}
+
+	&.active {
+		.line {
+			background: white;
+			color:      white;
+		}
+
+		.line-1 {
+			transform: translateY($translateY) translateX($translateX) rotate($rotation);
+			width:     100%;
+		}
+
+		.line-2 {
+			opacity: 0;
+			width:   100%;
+		}
+
+		.line-3 {
+			transform: translateY($translateY * -1 + 2) translateX($translateX) rotate($rotation * -1);
+			width:     100%;
+		}
+	}
+}
